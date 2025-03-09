@@ -1,0 +1,10 @@
+<h1>This is the Courses page</h1>
+<ul>
+{% for course in courses %}
+    <li>
+        {{ course.title }}
+    </li>
+    {% empty %}
+    <li>Empty list</li>
+{% endfor %}
+</ul>

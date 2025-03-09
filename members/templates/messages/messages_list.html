@@ -1,0 +1,9 @@
+{% for message in messages %}
+<p>{{ message.value }} - {{ message.created_at }}</p>
+{% endfor %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add</button>
+</form>
