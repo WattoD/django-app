@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'courses',
+    'tags',
     'members.apps.MembersConfig'
 ]
 
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'courses', BASE_DIR / 'messages',],
+        'DIRS': [BASE_DIR / 'courses', BASE_DIR / 'messages', BASE_DIR / 'tags',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
