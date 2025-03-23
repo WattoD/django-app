@@ -21,6 +21,7 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    path('login/', auth_views.LoginView.as_view(), name='login'),
     path('admin/', admin.site.urls),
     path('courses/', include('courses.urls')),
     path('members/', include('members.urls')),

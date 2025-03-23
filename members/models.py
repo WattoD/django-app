@@ -10,7 +10,7 @@ class Message(models.Model):
     user = models.ForeignKey('members.CustomUser', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.user.username}: {self.value}'
+        return f'{self.user.email}: {self.value}'
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, phone_number, password, **extra_fields):

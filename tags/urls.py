@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.custom_tags, name='tags'),
+    path('', views.TagsListView.as_view(), name='tags'),
 ]

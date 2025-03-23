@@ -1,5 +1,7 @@
+You owner of {{ user_message_count }} messages (last at {{ last_message_date }})
+{{ last_message }}
 {% for message in messages %}
-<p>{{ message.value }} - {{ message.created_at }}</p>
+<p>{{ message.value }} - {{ message.created_at }} - <a href="{% url 'message_delete' id=message.id %}">delete</a></p>
 {% endfor %}
 
 <form method="POST">

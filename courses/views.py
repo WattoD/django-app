@@ -1,16 +1,14 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Course
 
 
 # Create your views here.
-def courses(request):
-    if not request.user.is_authenticated:
-        return render_access_denied_page(request)
-    return render_courses_list(request)
+class CourseListView(LoginRequiredMixin, ListView):
+    model = Course
+    context_object_name = 'courses'
+    template_name = 'courses/courses_list.html'
+    login_url = '/login/'
 
-def render_courses_list(request):
-    courses_list = Course.objects.all()
-    return render(request, 'courses/courses_list.html', {'courses': courses_list})
-
-def render_access_denied_page(request):
-    return render(request, 'courses/access_denied.html')
+    def get_queryset(self):
+        return super().get_queryset()

@@ -1,9 +1,8 @@
-from django.shortcuts import render
-from django.core.exceptions import PermissionDenied
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-def custom_tags(request):
-    if not request.user.is_authenticated:
-        raise PermissionDenied
-
-    return render(request, 'tags.html')
+class TagsListView(LoginRequiredMixin, TemplateView):
+    context_object_name = 'tags'
+    template_name = 'tags_list.html'
+    login_url = '/login/'

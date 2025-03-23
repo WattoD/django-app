@@ -1,13 +1,14 @@
-from django.core.exceptions import PermissionDenied
-from django.shortcuts import render
-
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from languages.models import Language
 
 
 # Create your views here.
-def languages(request):
-    if not request.user.is_authenticated:
-        raise PermissionDenied
+class LanguageListView(LoginRequiredMixin, ListView):
+    model = Language
+    context_object_name = 'languages'
+    template_name = 'languages/languages_list.html'
+    login_url = '/login/'
 
-    languages_list = Language.objects.all()
-    return render(request, 'languages/languages_list.html', {'languages': languages_list})
+    def get_queryset(self):
+        return super().get_queryset()

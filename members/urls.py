@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.messages, name='messages'),
-    path('temp', views.temp_message, name='temp_message'),
+    path('', views.MessageListView.as_view(), name='messages'),
+    path('delete/<int:id>/', views.MessageDeleteView.as_view(), name='message_delete'),
+    path('temp', views.TemporaryMessageView.as_view(), name='temp_message'),
 ]
