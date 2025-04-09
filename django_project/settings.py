@@ -37,10 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
     'courses',
     'tags',
     'members.apps.MembersConfig',
-    'languages'
+    'languages',
+    'django_api',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +144,17 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'members.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'django_api.authentication.CustomJWTAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+JWT_EXPIRATION_DAYS = 0
+JWT_EXPIRATION_MINUTES = 5
+JWT_SECRET = SECRET_KEY

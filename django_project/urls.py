@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+# from django_api.views import CustomAuthToken
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
@@ -27,6 +29,11 @@ urlpatterns = [
     path('members/', include('members.urls')),
     path('tags/', include('tags.urls')),
     path('languages/', include('languages.urls')),
+    path('api/', include('django_api.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api-token/obtain/', TokenObtainPairView.as_view(), name='token_obtain'),
+    path('api-token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # path('token-auth/', CustomAuthToken.as_view(), name='token-auth'),
     # path('accounts/login', auth_views.LoginView.as_view(), name='login'),
     # path('accounts/logout', auth_views.LogoutView.as_view(), name='logout'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
